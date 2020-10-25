@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Я Руслан, а Дима Лебедев</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import {createAppContainer} from "react-navigation";
+import {createDrawerNavigation, createDrawerNavigator} from "react-navigation-drawer";
+import {Dimensions} from "react-native";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import {Feather} from "@expo/vector-icons";
+
+import {ProfileScreen, MenuScreen, BasketScreen} from "./screens";
+
+const DrawerNavigator = createDrawerNavigator ({
+  ProfileScreen,
+  MenuScreen,
+  BasketScreen
+})
+
+export default createAppContainer(DrawerNavigator);
