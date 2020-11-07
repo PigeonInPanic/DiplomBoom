@@ -1,5 +1,7 @@
-import { createStackNavigator } from 'react-navigation-stack'
-import { createDrawerNavigator } from 'react-navigation-drawer'
+import * as React from 'react';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { NavigationContainer, Drawer } from '@react-navigation/native';
 
 import RollsScreen from "../screens/RollsScreen"
 import FriedScreen from "../screens/FriedScreen"
@@ -49,36 +51,26 @@ const _SetsNavigator = createStackNavigator({
     }
 })
 
-const FullMenuNavigator = createDrawerNavigator({
-    Rolls: {
-        screen: _RollsNavigator,
-        navigationOptions: {
-            title: "Роллы"
-        }
-    },
-    pizza: {
-        screen: _pizzaNavigator,
-        navigationOptions: {
-            title: "Пицца"
-        }
-    },
-    Fread: {
-        screen: _FriedNavigator,
-        navigationOptions: {
-            title: "Жаренные роллы"
-        }
-    },
-    pasteWOK: {
-        screen: _pasteWOKNavigator,
-        navigationOptions: {
-            title: "Лапша WOK"
-        }
-    },
-    Sets: {
-        screen: _SetsNavigator,
-        navigationOptions: {
-            title: "Сеты"
-        }
+const FullMenuNavigator = createDrawerNavigator()
+    
+    function MyFullMenuNavigator() {
+        return (
+          <FullMenuNavigator.Navigator
+            drawerStyle={{
+              backgroundColor: '#c6cbef',
+              width: 240,
+            }}
+          >
+            <FullMenuNavigator.Screen name="Rolls" component={_RollsNavigator} />
+            <FullMenuNavigator.Screen name="Pizza" component={_pizzaNavigator} />
+          </FullMenuNavigator.Navigator>
+        );
+      }
+      
+export function FullMenuNavigator() {
+    return (
+        <NavigationContainer>
+            <MyFullMenuNavigator />
+        </NavigationContainer>
+        );
     }
-})
-export default FullMenuNavigator 
